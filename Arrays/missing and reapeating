@@ -1,0 +1,31 @@
+import java.util.*;
+
+class Solution {
+    public ArrayList<Integer> findTwoElement(int arr[]) {
+        int n = arr.length;
+
+        long S = (long)n * (n + 1) / 2;
+        long P = (long)n * (n + 1) * (2 * n + 1) / 6;
+
+        long S1 = 0, P1 = 0;
+
+        for (int num : arr) {
+            S1 += num;
+            P1 += (long)num * num;
+        }
+
+        long diff = S1 - S;      // x - y
+        long sqDiff = P1 - P;    // x^2 - y^2
+
+        long sum = sqDiff / diff; // x + y
+
+        int repeating = (int)((diff + sum) / 2);
+        int missing = (int)(sum - repeating);
+
+        ArrayList<Integer> result = new ArrayList<>();
+        result.add(repeating);
+        result.add(missing);
+
+        return result;
+    }
+}
