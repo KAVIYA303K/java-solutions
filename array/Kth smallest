@@ -1,0 +1,17 @@
+import java.util.*;
+
+class Solution {
+    public static int kthSmallest(int[] arr, int k) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+        for (int num : arr) {
+            pq.add(num);
+        }
+
+        for (int i = 1; i < k; i++) {
+            pq.poll();
+        }
+
+        return pq.peek();
+    }
+}
